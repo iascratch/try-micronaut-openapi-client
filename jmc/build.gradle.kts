@@ -96,7 +96,7 @@ graalvmNative.toolchainDetection.set(false)
 openApiGenerate {
   // https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator-gradle-plugin#openapigenerate
   // https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators.md
-  // https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/jaxrs-spec.md
+  // https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/java-micronaut-client.md
   val openApiGroup = "com.example.petstore"
   generatorName.set("java-micronaut-client")
   inputSpec.set("$rootDir/spec/openapi/petstore3.yaml")
