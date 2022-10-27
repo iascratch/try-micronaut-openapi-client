@@ -755,6 +755,12 @@ components:
           - available
           - pending
           - sold
+        lifespan:
+          type: string
+          format: period
+        age:
+          type: string
+          format: duration
       xml:
         name: pet
     ApiResponse:
