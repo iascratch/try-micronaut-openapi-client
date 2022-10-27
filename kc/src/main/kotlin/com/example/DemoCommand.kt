@@ -17,6 +17,7 @@ val Pet.agePeriod: Period?
   mixinStandardHelpOptions = true
 )
 class DemoCommand : Runnable {
+  private val logger = LoggerFactory.getLogger(javaClass)
 
   override fun run() {
     logger.info("entry ...")
