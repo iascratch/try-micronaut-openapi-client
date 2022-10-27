@@ -56,6 +56,7 @@ dependencies {
   implementation("io.swagger.core.v3:swagger-annotations")
   testImplementation("io.micronaut:micronaut-http-client")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+  implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
   annotationProcessor("io.micronaut:micronaut-http-validation")
   annotationProcessor("io.micronaut.security:micronaut-security-annotations")
@@ -118,6 +119,9 @@ openApiGenerate {
       "serializationLibrary" to "jackson"
     )
   )
+  typeMappings.set(mutableMapOf(
+    "duration" to "java.time.Period"
+  ))
 }
 
 sourceSets.main {

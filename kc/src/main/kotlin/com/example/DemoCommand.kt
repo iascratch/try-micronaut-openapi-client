@@ -2,14 +2,15 @@ package com.example
 
 // import com.example.petstore.api.PetApi
 import com.example.petstore.model.Pet
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.micronaut.configuration.picocli.PicocliRunner
 import org.slf4j.LoggerFactory
 import picocli.CommandLine.Command
 import java.time.Period
 
-val Pet.agePeriod: Period?
-  get() = if (age != null) Period.parse(age) else null
+//val Pet.agePeriod: Period?
+//  get() = if (age != null) Period.parse(age) else null
 
 @Command(
   name = "demo",
@@ -21,9 +22,10 @@ class DemoCommand : Runnable {
 
   override fun run() {
     logger.info("entry ...")
-    val somePet = Pet("iadaingu", listOf(), age = "P1Y2M3D")
+    val somePet = Pet("iadaingu", listOf(), age = Period.parse("P1Y2M3D"))
     val mapper = jacksonObjectMapper()
-    logger.info("somePet = {}, somePet.agePeriod = {}", mapper.writeValueAsString(somePet), somePet.agePeriod)
+    mapper.registerModule(JavaTimeModule())
+    logger.info("somePet = {}, somePet.agePeriod = {}", mapper.writeValueAsString(somePet), somePet.age)
     logger.info("done ...")
   }
 
