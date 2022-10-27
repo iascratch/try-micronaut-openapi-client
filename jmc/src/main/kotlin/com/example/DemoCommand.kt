@@ -1,11 +1,11 @@
 package com.example
 
 import com.example.petstore.api.PetApi
+import com.example.petstore.model.Pet
 import io.micronaut.configuration.picocli.PicocliRunner
 import jakarta.inject.Inject
-import picocli.CommandLine.Command
-import picocli.CommandLine.Option
 import org.slf4j.LoggerFactory
+import picocli.CommandLine.Command
 
 @Command(
   name = "demo",
@@ -15,24 +15,23 @@ import org.slf4j.LoggerFactory
 class DemoCommand : Runnable {
   private val logger = LoggerFactory.getLogger(javaClass)
 
-
   @Inject
   lateinit var api: PetApi
 
-  @Option(names = ["-v", "--verbose"], description = ["..."])
-  private var verbose: Boolean = false
-
   override fun run() {
     logger.info("entry ...")
-    // business logic here
-//    if (verbose) {
-//      println("Hi!")
-//    }
-
+    logger.info("getting sold pets ...")
     api.findPetsByStatus("sold").block().forEach {
       logger.info("pet.name = {}", it.name)
     }
-
+    try {
+      logger.info("addnig a pet ...")
+      val addedPet = api.addPet(Pet("iadaingu", listOf())).block()
+      logger.info("added pet {}", addedPet)
+    } catch (error: Exception) {
+      logger.error("error = {}", error.message)
+    }
+    logger.info("done ...")
   }
 
   companion object {
