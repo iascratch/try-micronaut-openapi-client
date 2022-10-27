@@ -25,7 +25,7 @@ class DemoCommand : Runnable {
       logger.info("pet.name = {}", it.name)
     }
     try {
-      logger.info("addnig a pet ...")
+      logger.info("adding a pet ...")
       val addedPet = api.addPet(Pet("iadaingu", listOf())).block()
       logger.info("added pet {}", addedPet)
     } catch (error: Exception) {
