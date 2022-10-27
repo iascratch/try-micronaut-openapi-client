@@ -1,0 +1,4 @@
+micronaut:
+  application:
+    name: demo
+openapi-micronaut-client-base-path: https://petstore3.swagger.io/api/v3/
